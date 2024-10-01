@@ -1,6 +1,6 @@
 
 // EJERCICIO 1
-
+/*
 // Array con números integrados
 var num : [Int] = [3,5,8,32,17]
 
@@ -16,8 +16,72 @@ var media = Double(arraySum)/Double(length)
 
 print(num)
 print("La media es: ", media)
+*/
 
 // EJERCICIO 2
+/*
+// Función para preguntar si quiere jugar
+func preguntaJugar() {
+    print("¿Quieres jugar a un juego? (si/no)")
+    if let respuesta = readLine()?.lowercased()
+    {
+        if respuesta == "si" || respuesta == "si" {
+            print("Vamos a jugar a la ruleta rusa")
+            jugarRuletaRusa()
+        }
+        else
+        {
+            print("Quizas en otra ocasión")
+        }
+    }
+}
+// Llamar a la función de preguntaJugar
+preguntaJugar()
+// Función para iniciar el juego
+func jugarRuletaRusa() {
+    
+    // Posición de la bala en el tambor
+    let posicionBala = girarTambor()
+    // Posición inicial del tambor
+    var posicionTambor = girarTambor()
+    
+    // Nombre de los jugadores
+    let jugador1 = "Jugador 1"
+    let jugador2 = "Jugador 2"
+    
+    var juegoTerminado = false
+    
+    // Alternar entre jugadores hasta que uno pierda
+    while !juegoTerminado {
+        // Turno del jugador 1
+        print("Turno del \(jugador1). Presione Enter para disparar....")
+        _ = readLine()
+        juegoTerminado = disparar(jugador: jugador1, posicionTambor: posicionTambor, posicionBala: posicionBala)
+        if juegoTerminado {break}
+        
+        // Avanza la posición del tambor
+        posicionTambor += 1
+        
+        // Volver a posición 1 si el tambor supera el 6
+        if posicionTambor > 6 {
+            posicionTambor = 1
+        }
+        
+        // Turno del jugador 2
+        print("Turno del \(jugador2). Presione Enter para disparar....")
+        _ = readLine()
+        juegoTerminado = disparar(jugador: jugador2, posicionTambor: posicionTambor, posicionBala: posicionBala)
+        if juegoTerminado {break}
+        
+        // Avanza la posición del tambor
+        posicionTambor += 1
+        
+        // Volver a posición 1 si el tambor supera el 6
+        if posicionTambor > 6 {
+            posicionTambor = 1
+        }
+    }
+}
 
 func girarTambor() -> Int {
     return Int.random(in: 1...6)
@@ -36,44 +100,63 @@ func disparar (jugador: String, posicionTambor: Int, posicionBala: Int) -> Bool 
         return false
     }
 }
+*/
 
-// Función para iniciar el juego
-func jugarRuletaRusa() {
+// EJERCICIO 3
+
+func calcularMedia(_ numeros: [Int]) -> Double
+{
+    // Sumamos los elementos del Array
+    let sum = numeros.reduce(0, +)
+    // Calculamos el total de elementos del Array
+    let cant = numeros.count
+    // Sacamos la media
+    return Double(sum)/Double(cant)
+}
+
+func introducirNum() -> [Int]
+{
+    var numeros: [Int] = []
     
-    // Función para preguntar si quiere jugar
-    func preguntaJugar() {
-        print("¿Quieres jugar a un juego? (si/no)")
-    }
-    
-    // Posición de la bala en el tambor
-    let posicionBala = girarTambor()
-    // Posición inicial del tambor
-    var posicionTambor = girarTambor()
-    
-    // Nombre de los jugadores
-    let jugador1 = "Jugador 1"
-    let jugador2 = "Jugador 2"
-    
-    var juegoTerminado = false
-    
-    // Alternar entre jugadores hasta que uno pierda
-    while !juegoTerminado {
-        // Turno del jugador 1
-        juegoTerminado = disparar(jugador: jugador1, posicionTambor: posicionTambor, posicionBala: posicionBala)
-        if juegoTerminado {break}
-        
-        // Avanza la posición del tambor
-        posicionTambor += 1
-        
-        // Volver a posición 1 si el tambor supera el 6
-        if posicionTambor > 6 {
-            posicionTambor = 1
+    while true {
+        print("Introduce un número (o pon 'fin' para terminar): ", terminator: "")
+        if let input = readLine() {
+            if input.lowercased() == "fin" {
+                break
+            }
+            else if let numero = Int(input)
+            {
+                numeros.append(numero)
+            }
+            else
+            {
+                print("Por favor, introduzca un número válido")
+                    
+            }
         }
     }
-    
-    
-    
+    return numeros
 }
+
+let numeros = introducirNum()
+
+if numeros.isEmpty
+{
+    print("No has introducido ningún número")
+}
+else
+{
+    // Calculamos la media
+    let media = calcularMedia(numeros)
+    
+    print("\(numeros)")
+    print("La media es: \(media)")
+}
+
+
+// EJERCICIO 4
+
+
 
 
 

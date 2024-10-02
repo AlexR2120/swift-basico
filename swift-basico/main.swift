@@ -29,8 +29,7 @@ func preguntaJugar() {
             print("Vamos a jugar a la ruleta rusa")
             jugarRuletaRusa()
         }
-        else
-        {
+        else {
             print("Quizas en otra ocasión")
         }
     }
@@ -101,7 +100,7 @@ func disparar (jugador: String, posicionTambor: Int, posicionBala: Int) -> Bool 
     }
 }
 */
-
+/*
 // EJERCICIO 3
 
 func calcularMedia(_ numeros: [Int]) -> Double
@@ -128,10 +127,9 @@ func introducirNum() -> [Int]
             {
                 numeros.append(numero)
             }
-            else
-            {
+            else {
                 print("Por favor, introduzca un número válido")
-                    
+                
             }
         }
     }
@@ -144,19 +142,46 @@ if numeros.isEmpty
 {
     print("No has introducido ningún número")
 }
-else
-{
+else {
     // Calculamos la media
     let media = calcularMedia(numeros)
     
     print("\(numeros)")
     print("La media es: \(media)")
 }
-
+*/
 
 // EJERCICIO 4
 
-
+print("Introduce una frase: ")
+if let frase = readLine()
+{
+    // Separa las palabras de la frase
+    let palabras = frase.split(separator: " ")
+    
+    // Crear Array para las palabras censuradas
+    var palabrasCensuradas = [String]()
+    
+    // Recorrer cada palabra
+    for palabra in palabras {
+        // Comprobar si empieza por "j", "p" o "m" (minúsculas o mayúsculas)
+        if palabra.lowercased().hasPrefix("j") || palabra.lowercased().hasPrefix("p")
+            || palabra.lowercased().hasPrefix("m") {
+            
+            // Añadirle asteríscos a las palabras censuradas
+            palabrasCensuradas.append("*****")
+        }
+        else {
+            // Si no, agregar la frase sin censura.
+            palabrasCensuradas.append(String(palabra))
+        }
+    }
+    
+    // Crear la frase
+    let resultado = palabrasCensuradas.joined(separator: " ")
+    
+    print(resultado)
+}
 
 
 
